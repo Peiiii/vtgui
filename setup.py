@@ -57,7 +57,7 @@ setuptools.setup(
     description="vtgui is a wrapper for pyqt5",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="http://github.com:Peiiii/vtgui",
+    url="http://github.com/Peiiii/vtgui",
     packages=packages,
     package_dir={'vtgui': 'vtgui'},
     install_requires=['pyqt5'],
