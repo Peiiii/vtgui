@@ -90,7 +90,7 @@ def make_field(name, parent, title=None, field_type=None, description=None, defa
 
 
 
-def make_app(data, callback, dst=None, columns=3):
+def make_app(data, callback, dst=None, columns=3,title='VTGUI'):
     if dst is None:
         dst = {}
 
@@ -100,7 +100,7 @@ def make_app(data, callback, dst=None, columns=3):
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
             # 设置窗口标题
-            self.setWindowTitle('简易浏览器')
+            self.setWindowTitle(title)
             # 设置窗口大小900*600
             self.resize(1300, 700)
             self.show()
