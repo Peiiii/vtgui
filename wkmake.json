@@ -4,7 +4,7 @@
   "pkg_name": "vtgui",
   "pkg_desc": "vtgui is a wrapper for pyqt5",
   "url": "http://github.com/Peiiii/vtgui",
-  "remote_url": "git@github.com:Peiiii/vtgui",
+  "remote_url": "git@github.com:Peiiii/vtgui.git",
   "install_requires": [
     "pyqt5","wpkit2"
   ]
