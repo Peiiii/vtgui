@@ -39,11 +39,8 @@ def get_version():
         f.write(version)
     return version
 
-packages=setuptools.find_packages()
-except_packages=['local']
-for pkg in except_packages:
-    if pkg in packages:
-        packages.remove(pkg)
+packages=setuptools.find_packages(exclude=['local','local.*'])
+
 print('packages:', packages)
 
 version = get_version()
@@ -60,7 +57,7 @@ setuptools.setup(
     url="http://github.com/Peiiii/vtgui",
     packages=packages,
     package_dir={'vtgui': 'vtgui'},
-    install_requires=['pyqt5'],
+    install_requires=['pyqt5', 'wpkit2'],
     entry_points={
         'console_scripts': [
             'vtgui = vtgui.clitools.cli:main',

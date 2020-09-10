@@ -6,6 +6,6 @@
   "url": "http://github.com/Peiiii/vtgui",
   "remote_url": "git@github.com:Peiiii/vtgui",
   "install_requires": [
-    "pyqt5"
+    "pyqt5","wpkit2"
   ]
 }
