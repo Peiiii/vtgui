@@ -90,10 +90,9 @@ def make_field(name, parent, title=None, field_type=None, description=None, defa
 
 
 
-def make_app(data, callback, dst=None, columns=3,title='VTGUI'):
-    if dst is None:
-        dst = {}
-
+def make_app(function, args=(), columns=3,title='VTGUI'):
+    if not isinstance(columns,(tuple,list)):
+        columns=[columns]*len(args)
     class MainWindow(QWidget):
         app = QApplication(sys.argv)
 
@@ -110,9 +109,26 @@ def make_app(data, callback, dst=None, columns=3,title='VTGUI'):
             # 添加TextBrowser
             console=VConsole()
             self.console=console
-            target=lambda: callback(dst)
+
+
+            arg_layouts = []
+            final_args=[]
+            dict_arg_count=-1
+            for arg in args:
+                if isinstance(arg,dict):
+                    dict_arg_count+=1
+                    a={}
+                    arg_layouts.append(make_layout(
+                        arg,a,columns[dict_arg_count],
+                    ))
+                    arg_layouts.append(VSpacing(30))
+                    final_args.append(a)
+                else:
+                    final_args.append(arg)
+            arg_layouts=VVBoxLayout()(*arg_layouts)
+            target = lambda: function(*final_args)
             layout = VVBoxLayout()(
-                make_layout(data, dst, columns),
+                arg_layouts,
                 VHBoxLayout()(
                     VPushButton('run', onclicked=lambda: KillableThread.start_new_thread(target=target,name='test')),
                     VPushButton('stop', onclicked=lambda: KillableThread.kill_thread_by_name('test')),
