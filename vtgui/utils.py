@@ -8,19 +8,20 @@ import multiprocessing
 import uuid
 import time
 import inspect
+import math
 
 def split_list(lis, ratios, shuffle=False):
     if not lis:
         return None
     if len(lis) < len(ratios):
         raise Exception("List is not long enough to be split.")
-    import numpy as np
     if shuffle:
         random.shuffle(lis)
-    ratios = np.array(ratios)
-    ratios = ratios / ratios.sum()
-    nums = ratios * len(lis)
-    nums = np.round(nums).astype(int)
+    s=sum(ratios)
+    nums=[]
+    for r in ratios:
+        n=int(len(lis)*r/s+0.5)
+        nums.append(n)
     total = len(lis)
     splits = []
     current_index = 0
